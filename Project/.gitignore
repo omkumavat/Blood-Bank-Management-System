@@ -1,8 +1,6 @@
-/vendor
-vendor/bundle
-/log
-log
-vendor
-Dockerfile
-tmp
-/tmp
+/vendor/bundle
+/log/*
+/tmp/*
+/node_modules
+/.env
+/bin/*
