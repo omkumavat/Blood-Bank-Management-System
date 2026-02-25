@@ -14,7 +14,7 @@ class BloodBank < ApplicationRecord
                       message: "Numbers and special characters are not allowed"}
 
   validates :pincode, numericality: {only_integer: true}, length: {is: 6}
-  validates :phone_number, numericality: {only_integer: true}, length: {is: 10}
+  validates :phone_number,uniqueness: true ,numericality: {only_integer: true}, length: {is: 10}
 
   validates :website,
             format: { 
