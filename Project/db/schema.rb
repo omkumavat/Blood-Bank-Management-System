@@ -10,21 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_25_063921) do
+ActiveRecord::Schema[8.1].define(version: 0) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "hospitals", force: :cascade do |t|
-    t.string "address", null: false
-    t.string "city", null: false
-    t.string "country", null: false
-    t.datetime "created_at", null: false
-    t.string "name", null: false
-    t.integer "phone_number", null: false
-    t.integer "pincode", null: false
-    t.string "state", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "verified", default: false
-    t.string "website"
-  end
 end
