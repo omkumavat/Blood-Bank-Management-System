@@ -1,0 +1,8 @@
+/vendor
+vendor/bundle
+/log
+log
+vendor
+Dockerfile
+tmp
+/tmp
