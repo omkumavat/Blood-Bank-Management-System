@@ -11,7 +11,7 @@ class CreateBloodBank < ActiveRecord::Migration[8.1]
       t.integer :phone_number, null: false
       t.string :website
       t.boolean :verified, default: false
-      t.boolean :stock_available, 
+      # t.boolean :stock_available, 
 
       t.timestamps
     end
