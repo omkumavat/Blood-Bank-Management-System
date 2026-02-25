@@ -9,6 +9,7 @@ class CreateUser < ActiveRecord::Migration[8.1]
       t.string :city, null: false
       t.string :address, null: false
       t.integer :pincode, null: false
+      t.date :date_of_birth, null: false
       t.string :blood_group, null: false
 
       t.timestamps

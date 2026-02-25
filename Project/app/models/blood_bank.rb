@@ -25,4 +25,5 @@ class BloodBank < ApplicationRecord
 
   validates :verified, inclusion: {in: [true, false], message: "%value is invalid!"}
   
+  belongs_to :hospital
 end
