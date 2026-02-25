@@ -5,11 +5,11 @@ class BloodStock < ApplicationRecord
   
 
   
-  validates :type_blood, :quantity, :size,
+  validates :blood_group, :quantity, :size,
             presence: { message: "cannot be blank" }
 
   
-  validates :type_blood,
+  validates :blood_group,
             inclusion: {
               in: %w[A+ A- B+ B- AB+ AB- O+ O- Rh+ Rh-],
               message: "must be a valid blood group (A+, A-, B+, B-, AB+, AB-, O+, O-, Rh+, Rh-)"
