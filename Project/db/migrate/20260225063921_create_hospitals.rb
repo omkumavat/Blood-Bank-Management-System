@@ -11,7 +11,7 @@ class CreateHospitals < ActiveRecord::Migration[8.1]
       t.integer :pincode, null: false
       t.string :website
       t.boolean :verified, default: false
-
+      
       t.timestamps
     end
   end
