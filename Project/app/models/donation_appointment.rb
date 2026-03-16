@@ -4,7 +4,7 @@ class DonationAppointment < ApplicationRecord
 
   validate :appointment_must_be_valid
 
-  validates :scheduled_date, :scheduled_time_start, :scheduled_time_end
+  # validates :scheduled_date, :scheduled_time_start, :scheduled_time_end
 
   validates :status, presence: true, inclusion: { in: %w(scheduled completed),
               message: "%{value} is not a valid status" }

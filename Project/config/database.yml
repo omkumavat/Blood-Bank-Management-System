@@ -18,8 +18,8 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
-  username: raj
-  password: raj123
+  username: om
+  password: Divya424101@
   host: localhost
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 

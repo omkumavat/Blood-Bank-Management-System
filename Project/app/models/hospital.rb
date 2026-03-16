@@ -1,4 +1,8 @@
 class Hospital < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   has_one :blood_bank
   has_many :blood_requests
 
@@ -28,27 +32,12 @@ validates :address,
           }
 
 
-validates :phone_number,
-           uniqueness: true,
-          numericality: {
-            only_integer: true,
-            message: "must contain only digits"
-          },
-          length: {
-            is: 10,
-            message: "must be exactly 10 digits"
-          }
-
-
-validates :pincode,
-          numericality: {
-            only_integer: true,
-            message: "must contain only digits"
-          },
-          length: {
-            is: 6,
-            message: "must be exactly 6 digits"
-          }
+ validates :pincode, presence: true,
+          format: { with: /\A\d{6}\z/, message: "must be 6 digits" }
+  # validates :phone_number,uniqueness: true ,numericality: {only_integer: true}, length: {is: 10}
+    validates :phone_number, presence: true, uniqueness: true,
+          format: { with: /\A\d{10}\z/, message: "must be 10 digits" }
+          
 
 validates :website,
           format: {

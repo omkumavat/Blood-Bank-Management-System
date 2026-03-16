@@ -1,0 +1,73 @@
+<div class="container mt-5">
+
+  <!-- Blood Bank Details -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+
+      <h2 class="text-danger fw-bold mb-3">
+        <%= @blood_bank.name %>
+      </h2>
+
+      <p><strong>City:</strong> <%= @blood_bank.city %></p>
+      <p><strong>State:</strong> <%= @blood_bank.state %></p>
+      <p><strong>Phone:</strong> <%= @blood_bank.phone_number %></p>
+      <p><strong>Address:</strong> <%= @blood_bank.address %></p>
+
+    </div>
+  </div>
+
+
+  <!-- Donation Appointment Form -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+
+      <h4 class="mb-3 text-danger">Book Donation Appointment</h4>
+
+      <%= form_with url: user_create_donation_request_path(@blood_bank.id), method: :post do %>
+
+        <div class="mb-3">
+          <label class="form-label">Blood Group</label>
+          <p><strong><%= current_user.blood_group %></strong></p>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Select Date</label>
+          <input type="date" name="scheduled_date" class="form-control" required>
+        </div>
+
+        <!-- Time Slots -->
+        <div class="mb-3">
+          <label class="form-label">Select Time Slot</label>
+
+          <select name="time_slot" class="form-control">
+
+            <option value="slot1">
+              9:00 AM - 10:00 AM
+            </option>
+
+            <option value="slot2">
+              11:00 AM - 12:00 PM
+            </option>
+
+            <option value="slot3">
+              2:00 PM - 3:00 PM
+            </option>
+
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Message</label>
+          <textarea name="message" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-danger w-100">
+          Book Appointment
+        </button>
+
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

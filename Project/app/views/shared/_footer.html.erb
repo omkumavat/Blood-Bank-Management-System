@@ -1,0 +1,66 @@
+<footer class="bg-dark text-white mt-5 pt-5 pb-4">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-4">
+
+        <h5 class="fw-bold">BloodConnect</h5>
+
+        <p>
+          BloodConnect is a digital platform connecting blood donors,
+          hospitals, and blood banks to save lives during emergencies.
+        </p>
+
+      </div>
+
+      <div class="col-md-2">
+
+        <h6>Quick Links</h6>
+
+        <ul class="list-unstyled">
+
+          <li><%= link_to "Home", home_path, class: "text-white text-decoration-none" %></li>
+          <li><%= link_to "Donate Blood", user_dashboard_path, class: "text-white text-decoration-none" %></li>
+          <li><%= link_to "Blood Banks", user_donate_blood_path, class: "text-white text-decoration-none" %></li>
+
+        </ul>
+
+      </div>
+
+      <div class="col-md-3">
+
+        <h6>Contact</h6>
+
+        <p>Email: support@bloodconnect.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Pune, Maharashtra, India</p>
+
+      </div>
+
+      <div class="col-md-3">
+
+        <h6>Follow Us</h6>
+
+        <p>Facebook</p>
+        <p>Instagram</p>
+        <p>Twitter</p>
+
+      </div>
+
+    </div>
+
+    <hr class="bg-light">
+
+    <div class="text-center">
+
+      <p class="mb-0">
+        © <%= Time.current.year %> BloodConnect. All rights reserved.
+      </p>
+
+    </div>
+
+  </div>
+
+</footer>
