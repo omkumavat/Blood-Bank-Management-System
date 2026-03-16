@@ -1,0 +1,160 @@
+<div class="container mt-5">
+   <h2 class="text-danger mb-4">Manage Blood Stocks</h2>
+   <% if current_blood_bank.present? %>
+   <!-- Blood Bank Info -->
+   <div class="card shadow-sm mb-4">
+      <div class="card-body">
+         <h4 class="text-danger fw-bold">
+            <%= current_blood_bank.name %>
+         </h4>
+         <p>
+            <strong>Location:</strong>
+            <%= current_blood_bank.city %>,
+            <%= current_blood_bank.state %>,
+            <%= current_blood_bank.country %>
+         </p>
+         <p>
+            <strong>Phone:</strong>
+            <%= current_blood_bank.phone_number %>
+         </p>
+      </div>
+   </div>
+   <!-- Add Stock Button -->
+   <div class="mb-3">
+      <button class="btn btn-danger"
+         data-bs-toggle="modal"
+         data-bs-target="#addStockModal">
+      Add Blood Stock
+      </button>
+   </div>
+   <!-- Blood Stocks -->
+   <div class="row">
+      <% if @blood_stocks.present? %>
+      <% @blood_stocks.each do |stock| %>
+      <div class="col-md-4 mb-3">
+         <div class="card shadow-sm">
+            <div class="card-body d-flex justify-content-between align-items-center">
+               <div>
+                  <h5 class="text-danger fw-bold">
+                     <%= stock.blood_group %>
+                  </h5>
+                  <p class="mb-0">
+                     Quantity: <%= stock.quantity %>
+                  </p>
+               </div>
+               <!-- Edit Button -->
+               <button class="btn btn-outline-primary btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editStockModal<%= stock.id %>">
+               ✏️
+               </button>
+            </div>
+         </div>
+      </div>
+      <!-- Edit Stock Modal -->
+      <div class="modal fade"
+         id="editStockModal<%= stock.id %>"
+         tabindex="-1">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">
+                     Edit Blood Stock
+                  </h5>
+                  <button class="btn-close"
+                     data-bs-dismiss="modal">
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <%= form_with url: blood_bank_update_blood_stock_path(stock),
+                     method: :patch,
+                     local: true,
+                     scope: :update_blood_stock,
+                      data: { turbo: false }  do |f| %>
+                  <div class="mb-3">
+                     <label class="form-label">
+                     Blood Group
+                     </label>
+                     <input type="text"
+                        class="form-control"
+                        value="<%= stock.blood_group %>"
+                        disabled>
+                  </div>
+                  <div class="mb-3">
+                     <label class="form-label">
+                     Quantity
+                     </label>
+                     <input type="number"
+                        name="quantity"
+                        value="<%= stock.quantity %>"
+                        class="form-control">
+                  </div>
+                  <%= f.hidden_field :blood_stock_id,
+                    value: stock.id %>
+                  <button class="btn btn-danger">
+                  Update Stock
+                  </button>
+                  <% end %>
+               </div>
+            </div>
+         </div>
+      </div>
+      <% end %>
+      <% else %>
+      <div class="alert alert-info">
+         No blood stock available.
+      </div>
+      <% end %>
+   </div>
+   <!-- Add Stock Modal -->
+   <div class="modal fade"
+      id="addStockModal"
+      tabindex="-1">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title">
+                  Add Blood Stock
+               </h5>
+               <button class="btn-close"
+                  data-bs-dismiss="modal">
+               </button>
+            </div>
+            <div class="modal-body">
+                                <%= form_with url: blood_bank_create_blood_stock_path,
+                    method: :post,
+                    scope: :blood_stock,
+                    local: true do |f| %>
+                    <div class="mb-3">
+                    <%= f.label :blood_group, class: "form-label" %>
+                    <%= f.select :blood_group,
+                        ["A+","A-","B+","B-","AB+","AB-","O+","O-"],
+                        {},
+                        class: "form-select" %>
+                    </div>
+                    <div class="mb-3">
+                    <%= f.label :quantity, class: "form-label" %>
+                    <%= f.number_field :quantity,
+                        class: "form-control",
+                        placeholder: "Enter quantity" %>
+                    </div>
+                    <%= f.hidden_field :blood_bank_id,
+                    value: current_blood_bank.id %>
+                    <button class="btn btn-danger">
+                    Add Stock
+                    </button>
+                    <% end %>
+            </div>
+         </div>
+      </div>
+   </div>
+   <% else %>
+   <!-- No Blood Bank -->
+   <div class="alert alert-warning">
+      You don't have a blood bank yet.
+   </div>
+   <%= link_to "Create Blood Bank",
+      new_blood_bank_registration_path,
+      class: "btn btn-danger" %>
+   <% end %>
+</div>

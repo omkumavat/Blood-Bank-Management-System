@@ -1,0 +1,32 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse vh-100">
+  <div class="position-sticky pt-3">
+
+    <div class="text-center text-white mb-4">
+      <h5><%= current_blood_bank.name %></h5>
+      <small><%= current_blood_bank.email %></small>
+    </div>
+
+    <ul class="nav flex-column">
+
+      <li class="nav-item">
+        <%= link_to "Manage Donation Requests", blood_bank_donation_requests_path, class: "nav-link text-white" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Manage Blood Requests", blood_bank_blood_requests_path, class: "nav-link text-white" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Manage Blood Stocks", blood_bank_blood_stocks_path, class: "nav-link text-white" %>
+      </li>
+
+      <li class="nav-item mt-3">
+        <%= button_to "Logout",
+              destroy_blood_bank_session_path,
+              method: :delete,
+              class: "btn btn-danger w-100" %>
+      </li>
+
+    </ul>
+  </div>
+</nav>

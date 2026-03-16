@@ -1,0 +1,32 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse vh-100">
+  <div class="position-sticky pt-3">
+
+    <div class="text-center text-white mb-4">
+      <h5><%= current_hospital.name %></h5>
+      <small><%= current_hospital.email %></small>
+    </div>
+
+    <ul class="nav flex-column">
+
+      <li class="nav-item">
+        <%= link_to "Blood Requests", hospital_blood_requests_path, class: "nav-link text-white" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Manage Blood Bank", manage_hospital_blood_bank_path, class: "nav-link text-white" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Manage Admins", "#", class: "nav-link text-white" %>
+      </li>
+
+      <li class="nav-item mt-3">
+        <%= button_to "Logout",
+              destroy_hospital_session_path,
+              method: :delete,
+              class: "btn btn-danger w-100" %>
+      </li>
+
+    </ul>
+  </div>
+</nav>

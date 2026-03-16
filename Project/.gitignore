@@ -1,0 +1,7 @@
+/vendor/bundle
+/log/*
+/tmp/*
+/node_modules
+/.env
+/app/assets/builds/*
+!/app/assets/builds/.keep
