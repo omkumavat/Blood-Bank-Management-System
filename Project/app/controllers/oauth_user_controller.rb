@@ -16,7 +16,7 @@ class OauthUserController < ApplicationController
   def redirect
     client_id = Rails.application.credentials.dig(:google, :client_id)
     # puts "------ #{client_id}"
-    redirect_uri = "http://localhost:3000/auth/callback"
+    redirect_uri = "https://blood-bank-management-system-pphz.onrender.com/auth/callback"
     
     scope        = "email profile"
 

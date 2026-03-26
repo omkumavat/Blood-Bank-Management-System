@@ -49,7 +49,7 @@ class Users::SessionsController < Devise::SessionsController
       code:          code,
       client_id:     Rails.application.credentials.dig(:google, :client_id),
       client_secret: Rails.application.credentials.dig(:google, :client_secret),
-      redirect_uri:  "http://localhost:3000/auth/callback",
+      redirect_uri:  "https://blood-bank-management-system-pphz.onrender.com/auth/callback",
       grant_type:    "authorization_code"
     })
     body = JSON.parse(response.body)
