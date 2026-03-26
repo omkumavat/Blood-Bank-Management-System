@@ -1,0 +1,11 @@
+<div class="col-md-4 col-sm-6">
+  <div class="card border-0 shadow-sm h-100" style="border-left: 3px solid #dc3545 !important;">
+    <div class="card-body">
+      <h6 class="text-danger fw-bold mb-1"><%= stock.blood_group %></h6>
+      <p class="mb-1 small text-muted">Units: <strong><%= stock.quantity %></strong></p>
+      <p class="mb-3 small text-muted">Updated: <%= stock.updated_at.strftime("%b %d, %Y") %></p>
+
+      <%= link_to "✏️ Edit", update_url, class: "btn btn-outline-danger btn-sm" %>
+    </div>
+  </div>
+</div>

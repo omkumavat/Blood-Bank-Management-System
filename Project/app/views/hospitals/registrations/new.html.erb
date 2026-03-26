@@ -1,4 +1,7 @@
 <h2 class="text-center mb-4">Hospital Sign Up</h2>
+  <div class="w-100 mb-3">
+    <%= link_to "← Back to Home", home_path, class: "btn btn-outline-secondary" %>
+  </div>
 
 <div class="container">
   <div class="card p-4 shadow signup-card">
@@ -23,19 +26,19 @@
   </div>
 
   <div class="form-group mb-3">
-    <%= f.label :country %>
-    <%= f.text_field :country, class: "form-control", placeholder: "Country" %>
-  </div>
+  <%= f.label :country %>
+  <%= f.select :country, [], {prompt: "Select Country"}, class: "form-control", id: "country" %>
+</div>
 
-  <div class="form-group mb-3">
-    <%= f.label :state %>
-    <%= f.text_field :state, class: "form-control", placeholder: "State" %>
-  </div>
+<div class="form-group mb-3">
+  <%= f.label :state %>
+  <%= f.select :state, [], {prompt: "Select State"}, class: "form-control", id: "state" %>
+</div>
 
-  <div class="form-group mb-3">
-    <%= f.label :city %>
-    <%= f.text_field :city, class: "form-control", placeholder: "City" %>
-  </div>
+<div class="form-group mb-3">
+  <%= f.label :city %>
+  <%= f.select :city, [], {prompt: "Select City"}, class: "form-control", id: "city" %>
+</div>
 
   <div class="form-group mb-3">
     <%= f.label :address %>
@@ -77,3 +80,88 @@
 
   </div>
 </div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+  const countrySelect = document.getElementById("country")
+  const stateSelect = document.getElementById("state")
+  const citySelect = document.getElementById("city")
+
+  // Load Countries
+  fetch("https://countriesnow.space/api/v0.1/countries/positions")
+    .then(res => res.json())
+    .then(data => {
+
+      data.data.forEach(country => {
+        const option = document.createElement("option")
+        option.value = country.name
+        option.text = country.name
+        countrySelect.appendChild(option)
+      })
+
+    })
+
+
+  // Load States
+  countrySelect.addEventListener("change", function(){
+
+    stateSelect.innerHTML = "<option>Select State</option>"
+
+    fetch("https://countriesnow.space/api/v0.1/countries/states",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        country: this.value
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+      data.data.states.forEach(state => {
+        const option = document.createElement("option")
+        option.value = state.name
+        option.text = state.name
+        stateSelect.appendChild(option)
+      })
+
+    })
+
+  })
+
+
+  // Load Cities
+  stateSelect.addEventListener("change", function(){
+
+    citySelect.innerHTML = "<option>Select City</option>"
+
+    fetch("https://countriesnow.space/api/v0.1/countries/state/cities",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        country: countrySelect.value,
+        state: this.value
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+      data.data.forEach(city => {
+        const option = document.createElement("option")
+        option.value = city
+        option.text = city
+        citySelect.appendChild(option)
+      })
+
+    })
+
+  })
+
+})
+
+</script>

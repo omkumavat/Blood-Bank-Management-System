@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Welcome - <%= @blood_bank.name %></title>
+</head>
+
+<body style="background:#f8f9fa;font-family:Arial, sans-serif;padding:20px;">
+
+<div style="max-width:600px;margin:auto;background:white;border-radius:8px;border:1px solid #ddd;overflow:hidden;">
+
+  <!-- Header -->
+  <div style="background:#dc3545;color:white;text-align:center;padding:20px;">
+    <h2 style="margin:0;">Welcome to Example.com</h2>
+    <p style="margin:5px 0 0;font-size:14px;">Blood Bank Management System</p>
+  </div>
+
+  <!-- Body -->
+  <div style="padding:25px;">
+
+    <p>Hello <strong><%= @blood_bank.name %></strong>,</p>
+
+    <p>
+      Your blood bank account has been successfully verified.
+      You can now manage blood requests and connect with donors.
+    </p>
+
+    <!-- Account Info -->
+    <div style="background:#fff5f5;border-left:5px solid #dc3545;padding:15px;margin-top:20px;">
+      <h3 style="color:#dc3545;margin-top:0;">Account Details</h3>
+
+      <p><strong>Blood Bank Name:</strong> <%= @blood_bank.name %></p>
+      <p><strong>Username:</strong> <%= @blood_bank.name %></p>
+      <p><strong>Portal:</strong> example.com</p>
+    </div>
+
+    <!-- Login Button -->
+    <div style="text-align:center;margin-top:30px;">
+      <a href="<%= @url %>"
+         style="background:#dc3545;color:white;padding:12px 25px;text-decoration:none;border-radius:5px;font-weight:bold;">
+         Login to Dashboard
+      </a>
+    </div>
+
+    <p style="margin-top:25px;font-size:14px;color:#555;">
+      If you need help, contact us at
+      <a href="mailto:support@example.com">support@example.com</a>
+    </p>
+
+  </div>
+
+  <!-- Footer -->
+  <div style="background:#f1f1f1;text-align:center;padding:15px;font-size:12px;color:#666;">
+    © <%= Time.current.year %> Example.com — Saving Lives Together 🩸
+  </div>
+
+</div>
+
+</body>
+</html>

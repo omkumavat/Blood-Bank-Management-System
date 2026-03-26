@@ -1,0 +1,15 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-danger fw-bold mb-0">Edit Blood Stock</h2>
+    <%= link_to "← Back", hospital_blood_banks_path, class: "btn btn-outline-secondary btn-sm" %>
+  </div>
+
+  <div class="card border-0 shadow-sm" style="max-width: 600px;">
+    <div class="card-body p-4">
+      <%= render "hospital/blood_stocks/form",
+          url: hospital_blood_bank_blood_stock_path(@hospital_blood_bank, @blood_stock),
+          stock: @blood_stock,
+          method: :patch %>
+    </div>
+  </div>
+</div>

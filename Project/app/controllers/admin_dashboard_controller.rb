@@ -24,6 +24,9 @@ class AdminDashboardController < ApplicationController
     blood_bank = BloodBank.find(params[:id])
     blood_bank.update(verified: true)
 
+    if blood_bank.verified == true
+      AdminMailer.with(blood_bank: blood_bank).welcome_email_blood_bank.deliver_later
+    end
     redirect_to manage_blood_banks_path, notice: "Blood bank verified successfully."
   end
 
@@ -42,6 +45,10 @@ class AdminDashboardController < ApplicationController
    def verify_admin_hospital
     hospital = Hospital.find(params[:id])
     hospital.update(verified: true)
+
+    if hospital.verified == true
+      AdminMailer.with(hospital: hospital).welcome_email_hospital.deliver_later
+    end
 
     redirect_to manage_hospitals_path, notice: "Hospital verified successfully."
   end

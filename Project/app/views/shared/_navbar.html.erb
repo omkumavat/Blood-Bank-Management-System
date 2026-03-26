@@ -22,7 +22,7 @@
        
        <% if current_user.present? %>
          <li class="nav-item">
-          <%= link_to "Donate Blood", user_donate_blood_path, class: "nav-link" %>
+          <%= link_to "Donate Blood", user_blood_banks_path, class: "nav-link" %>
         </li>
          <li class="nav-item">
           <%= link_to "Dashboard", user_dashboard_path, class: "nav-link" %>
@@ -33,36 +33,25 @@
         
         <% if current_hospital.present? %>
             <li class="nav-item">
-          <%= link_to "New Blood Request", blood_request_form_path, class: "nav-link" %>
+          <%= link_to "New Blood Request", new_hospital_blood_request_path, class: "nav-link" %>
         </li>
          <li class="nav-item">
           <%= link_to "Dashboard", hospital_dashboard_path, class: "nav-link" %>
         </li>
         <% end %>
         
-
-        
         <% if current_blood_bank.present? %>
-            <li class="nav-item">
-          <%= link_to "Donation Requests", blood_bank_donation_requests_path, class: "nav-link" %>
+        <li class="nav-item">
+        <%= link_to "Donation Requests", blood_bank_donation_appointments_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Dashboard", blood_bank_dashboard_path, class: "nav-link" %>
         </li>
         <% end %>
-
-        
-        
-
-        <!-- Login Dropdown -->
-
-        
-
-          
-          <% if current_user.present? %>
+        <% if current_user.present?  %>
              <li >
         <%= button_to "Logout",
-              destroy_user_session_path,
+              signout_path,
               method: :delete,
               class: "btn btn-danger w-100" %>
       </li>
@@ -82,6 +71,7 @@
               destroy_admin_session_path,
               method: :delete,
               class: "btn btn-danger w-100" %>
+             
             <% else %>
             <li class="nav-item dropdown">
 
@@ -114,9 +104,16 @@
             </li>
           <% end %>
           
-
-      
-
+          <div class="form-check form-switch ml-5">
+  <%= button_to set_theme_path, method: :post, class: "border-0 bg-transparent p-0" do %>
+    <%= check_box_tag :toggle, "1", @theme == "dark",
+        class: "form-check-input",
+        role: "switch",
+        id: "navToggle",
+        style: "width: 3rem; height: 1.5rem; cursor: pointer;",
+        onclick: "this.form.submit()" %>
+  <% end %>
+</div>
       </ul>
 
     </div>

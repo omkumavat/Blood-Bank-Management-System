@@ -1,4 +1,6 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse vh-100">
+<nav id="sidebarMenu"
+     class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse"
+     style="position: fixed; top: 0; left: 0; height: 100vh; width: 250px;">
   <div class="position-sticky pt-3">
 
     <div class="text-center text-white mb-4">
@@ -9,7 +11,7 @@
     <ul class="nav flex-column">
 
       <li class="nav-item">
-        <%= link_to "Manage Donation Requests", blood_bank_donation_requests_path, class: "nav-link text-white" %>
+        <%= link_to "Manage Donation Requests", blood_bank_donation_appointments_path, class: "nav-link text-white" %>
       </li>
 
       <li class="nav-item">

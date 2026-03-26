@@ -1,4 +1,6 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse vh-100">
+<nav id="sidebarMenu"
+     class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse"
+     style="position: fixed; top: 0; left: 0; height: 100vh; width: 250px;">
   <div class="position-sticky pt-3">
 
     <div class="text-center text-white mb-4">
@@ -13,11 +15,11 @@
       </li>
 
       <li class="nav-item">
-        <%= link_to "Accepted Blood Requests", user_accepted_blood_requests_path, class: "nav-link text-white" %>
+        <%= link_to "Accepted Blood Requests", accepted_user_blood_requests_path, class: "nav-link text-white" %>
       </li>
 
       <li class="nav-item">
-        <%= link_to "Donate Blood", user_donate_blood_path, class: "nav-link text-white" %>
+        <%= link_to "Donate Blood", user_blood_banks_path, class: "nav-link text-white" %>
       </li>
 
       <li class="nav-item">
@@ -26,7 +28,7 @@
 
       <li class="nav-item mt-3">
         <%= button_to "Logout",
-              destroy_user_session_path,
+              signout_path,
               method: :delete,
               class: "btn btn-danger w-100" %>
       </li>

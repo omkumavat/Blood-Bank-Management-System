@@ -5,9 +5,6 @@ class Hospital < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :blood_bank
   has_many :blood_requests
-
-
-
   
 
   
