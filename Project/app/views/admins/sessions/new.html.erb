@@ -1,17 +1,19 @@
-<div class="container mt-5" style="max-width: 450px;">
+<div class="container d-flex  flex-column justify-content-center align-items-center vh-100">
 
-  <div class="card shadow border-0">
-    <div class="card-body">
+  <div class="w-100 mb-3">
+    <%= link_to "← Back to Home", home_path, class: "btn btn-outline-secondary" %>
+  </div>
 
-      <h3 class="text-center text-danger mb-4">
-        Admin Login
-      </h3>
+  <div class="card shadow-lg border-0" style="width: 400px;">
+    <div class="card-body p-4">
+
+      <h3 class="text-center text-danger mb-4">Admin Login</h3>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
         <!-- Email -->
         <div class="mb-3">
-          <%= f.label :email, class: "form-label fw-bold" %>
+          <%= f.label :email, class: "form-label fw-semibold" %>
           <%= f.email_field :email,
                 autofocus: true,
                 autocomplete: "email",
@@ -21,7 +23,7 @@
 
         <!-- Password -->
         <div class="mb-3">
-          <%= f.label :password, class: "form-label fw-bold" %>
+          <%= f.label :password, class: "form-label fw-semibold" %>
           <%= f.password_field :password,
                 autocomplete: "current-password",
                 class: "form-control",
@@ -43,7 +45,6 @@
 
       <% end %>
 
-      <!-- Devise Links -->
       <div class="text-center mt-3">
         <%= render "admins/shared/links" %>
       </div>

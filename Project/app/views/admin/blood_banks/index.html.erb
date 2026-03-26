@@ -1,0 +1,153 @@
+<div class="container mt-5">
+
+  <!-- Header + Filter -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-danger">Blood Banks</h2>
+
+    <%= form_with url: request.path, method: :get, local: true do %>
+      <select name="status" class="form-select" onchange="this.form.submit()" style="width:200px;">
+        <option value="all">All</option>
+        <option value="pending" <%= "selected" if params[:status] == "pending" %>>
+          Pending
+        </option>
+        <option value="verified" <%= "selected" if params[:status] == "verified" %>>
+          Verified
+        </option>
+      </select>
+    <% end %>
+  </div>
+
+
+  <% if @blood_banks.present? %>
+
+    <div class="row">
+
+      <% @blood_banks.each do |bank| %>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+
+          <div class="card shadow-sm border-0 h-100">
+
+            <div class="card-body d-flex flex-column">
+
+              <h5 class="card-title text-danger fw-bold">
+                <%= bank.name %>
+              </h5>
+
+              <p class="mb-1">
+                <strong>City:</strong> <%= bank.city %>
+              </p>
+
+              <p class="mb-1">
+                <strong>State:</strong> <%= bank.state %>
+              </p>
+
+              <p class="mb-1">
+                <strong>Phone:</strong> <%= bank.phone_number %>
+              </p>
+
+              <p class="mb-3">
+                <strong>Status:</strong>
+
+                <% if bank.verified == true %>
+                  <span class="badge bg-success">Verified</span>
+                <% else %>
+                  <span class="badge bg-warning text-dark">Pending</span>
+                <% end %>
+
+              </p>
+
+              <!-- Buttons -->
+              <div class="mt-auto d-flex gap-2">
+
+               
+                <% if bank.verified == false %>
+                  <%# <%= link_to "Verify",
+                        verify_admin_blood_bank_path(bank),
+                        method: :patch,
+                        class: "btn btn-success w-100" %> 
+                    <button
+              class="btn btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#bloodBankModal<%= bank.id %>">
+              Verify
+            </button>
+
+                  <div class="modal fade"
+           id="bloodBankModal<%= bank.id %>"
+           tabindex="-1">
+
+        <div class="modal-dialog">
+
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title">
+                <%= bank.name %>
+              </h5>
+
+              <button type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal">
+              </button>
+            </div>
+
+            <div class="modal-body">
+
+              <p><strong>Phone:</strong> <%= bank.phone_number %></p>
+              <p><strong>Email ID:</strong> <%= bank.email %></p>
+
+              <p><strong>Address:</strong> <%= bank.address %></p>
+
+              <p><strong>City:</strong> <%= bank.city %></p>
+
+              <p><strong>State:</strong> <%= bank.state %></p>
+
+              <p><strong>Country:</strong> <%= bank.country %></p>
+
+              <p><strong>Status:</strong> <%= bank.verified ? "Verified" : "Pending" %></p>
+
+            </div>
+
+            <div class="modal-footer">
+            <%= button_to "Verify",
+                  verify_admin_blood_bank(bank),
+                  method: :patch,
+                  class: "btn btn-success" %>
+                  
+              <button class="btn btn-secondary"
+                      data-bs-dismiss="modal">
+                Close
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+                <% end %>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  <% else %>
+
+    <div class="alert alert-warning">
+      No blood banks found.
+    </div>
+
+  <% end %>
+
+</div>

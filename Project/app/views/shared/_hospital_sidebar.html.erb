@@ -1,4 +1,6 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse vh-100">
+<nav id="sidebarMenu"
+     class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse"
+     style="position: fixed; top: 0; left: 0; height: 100vh; width: 250px;">
   <div class="position-sticky pt-3">
 
     <div class="text-center text-white mb-4">
@@ -13,7 +15,7 @@
       </li>
 
       <li class="nav-item">
-        <%= link_to "Manage Blood Bank", manage_hospital_blood_bank_path, class: "nav-link text-white" %>
+        <%= link_to "Manage Blood Bank", hospital_blood_banks_path, class: "nav-link text-white" %>
       </li>
 
       <li class="nav-item">

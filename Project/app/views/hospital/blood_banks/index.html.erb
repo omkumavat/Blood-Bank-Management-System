@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-danger fw-bold mb-0">Manage Blood Bank</h2>
+  </div>
+
+  <% if @hospital_blood_bank.present? %>
+    <div class="card border-0 shadow-sm mb-4" style="border-left: 4px solid #dc3545 !important;">
+      <div class="card-body">
+        <h5 class="text-danger fw-bold mb-1"><%= @hospital_blood_bank.name %></h5>
+        <p class="text-muted mb-1 small">📍 <%= @hospital_blood_bank.city %>, <%= @hospital_blood_bank.state %>, <%= @hospital_blood_bank.country %></p>
+        <p class="text-muted mb-0 small">📞 <%= @hospital_blood_bank.phone_number %></p>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <%= link_to "+ Add Blood Stock",
+          new_hospital_blood_bank_blood_stock_path(@hospital_blood_bank),
+          class: "btn btn-danger" %>
+    </div>
+
+    <% if @hospital_blood_stocks.present? %>
+      <div class="row g-3">
+        <% @hospital_blood_stocks.each do |stock| %>
+          <%= render "shared/blood_stocks/stock_card",
+              stock: stock,
+              update_url: edit_hospital_blood_bank_blood_stock_path(@hospital_blood_bank, stock) %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="alert alert-info">No blood stock available yet.</div>
+    <% end %>
+  <% else %>
+    <div class="alert alert-warning">You don't have a blood bank yet.</div>
+    <%= link_to "Create Blood Bank", new_blood_bank_registration_path, class: "btn btn-danger" %>
+  <% end %>
+</div>

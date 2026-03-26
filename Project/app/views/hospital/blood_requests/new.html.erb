@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <div class="d-flex align-items-center mb-4 gap-3">
+        <%= link_to "← Back", hospital_blood_requests_path, class: "btn btn-outline-secondary btn-sm" %>
+        <h2 class="text-danger fw-bold mb-0">Create Blood Request</h2>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <%= form_with model: [:hospital, BloodRequest.new], local: true do |f| %>
+
+            <div class="mb-3">
+              <%= f.label :blood_group, class: "form-label fw-semibold" %>
+              <%= f.select :blood_group,
+                  ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+                  { prompt: "Select blood group" },
+                  class: "form-select" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :quantity, class: "form-label fw-semibold" %>
+              <%= f.number_field :quantity, class: "form-control", placeholder: "Enter quantity", min: 1 %>
+            </div>
+
+            <div class="mb-4">
+              <div class="form-check">
+                <%= f.check_box :allowed_to_users, class: "form-check-input" %>
+                <%= f.label :allowed_to_users, "Allow users to accept this request", class: "form-check-label" %>
+              </div>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "Create Request", class: "btn btn-danger" %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

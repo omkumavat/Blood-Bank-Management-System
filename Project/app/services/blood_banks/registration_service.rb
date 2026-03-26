@@ -24,6 +24,7 @@ module BloodBanks
 
       private
 
+      # TODO openstruct
       def success(blood_bank)
         OpenStruct.new(success?: true, blood_bank: blood_bank)
       end

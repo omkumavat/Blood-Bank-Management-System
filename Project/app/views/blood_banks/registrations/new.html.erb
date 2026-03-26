@@ -1,4 +1,9 @@
 <div class="container mt-5">
+  
+    <div class="w-100 mb-3">
+    <%= link_to "← Back to Home", home_path, class: "btn btn-outline-secondary" %>
+  </div>
+
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-7">
 
@@ -101,3 +106,88 @@
     </div>
   </div>
 </div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const countrySelect = document.getElementById("country")
+  const stateSelect = document.getElementById("state")
+  const citySelect = document.getElementById("city")
+
+  // Load Countries
+  fetch("https://countriesnow.space/api/v0.1/countries/positions")
+    .then(res => res.json())
+    .then(data => {
+
+      data.data.forEach(country => {
+        const option = document.createElement("option")
+        option.value = country.name
+        option.text = country.name
+        countrySelect.appendChild(option)
+      })
+
+    })
+
+
+  // Load States
+  countrySelect.addEventListener("change", function(){
+
+    stateSelect.innerHTML = "<option>Select State</option>"
+
+    fetch("https://countriesnow.space/api/v0.1/countries/states",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        country: this.value
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+      data.data.states.forEach(state => {
+        const option = document.createElement("option")
+        option.value = state.name
+        option.text = state.name
+        stateSelect.appendChild(option)
+      })
+
+    })
+
+  })
+
+
+  // Load Cities
+  stateSelect.addEventListener("change", function(){
+
+    citySelect.innerHTML = "<option>Select City</option>"
+
+    fetch("https://countriesnow.space/api/v0.1/countries/state/cities",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        country: countrySelect.value,
+        state: this.value
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+      data.data.forEach(city => {
+        const option = document.createElement("option")
+        option.value = city
+        option.text = city
+        citySelect.appendChild(option)
+      })
+
+    })
+
+  })
+
+})
+
+</script>

@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="d-flex align-items-center mb-4 gap-3">
+        <%= link_to "← Back", blood_bank_blood_requests_path, class: "btn btn-outline-secondary btn-sm" %>
+        <h2 class="text-danger fw-bold mb-0">Blood Request Details</h2>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+
+          <h6 class="text-danger fw-bold mb-3">Hospital Information</h6>
+          <p><strong>Name:</strong>  <%= @blood_request.hospital.name %></p>
+          <p><strong>City:</strong>  <%= @blood_request.hospital.city %></p>
+          <p><strong>Email:</strong> <%= @blood_request.hospital.email %></p>
+
+          <hr>
+
+          <h6 class="text-danger fw-bold mb-3">Blood Bank Information</h6>
+          <p><strong>Name:</strong>  <%= @blood_request.blood_bank.name %></p>
+          <p><strong>City:</strong>  <%= @blood_request.blood_bank.city %></p>
+          <p><strong>Phone:</strong> <%= @blood_request.blood_bank.phone_number %></p>
+
+          <hr>
+
+          <h6 class="text-danger fw-bold mb-3">Request Information</h6>
+          <p><strong>Blood Group:</strong> <%= @blood_request.blood_group %></p>
+          <p><strong>Quantity:</strong>    <%= @blood_request.quantity %> Units</p>
+          <p><strong>Status:</strong>
+            <% if @blood_request.status == "pending" %>
+              <span class="badge bg-warning text-dark">Pending</span>
+            <% else %>
+              <span class="badge bg-success">Completed</span>
+            <% end %>
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

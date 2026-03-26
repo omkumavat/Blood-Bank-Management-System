@@ -1,4 +1,8 @@
-<div class="container d-flex justify-content-center align-items-center vh-100">
+<div class="container d-flex  flex-column justify-content-center align-items-center vh-100">
+
+  <div class="w-100 mb-3">
+    <%= link_to "← Back to Home", home_path, class: "btn btn-outline-secondary" %>
+  </div>
 
   <div class="card shadow-lg border-0" style="width: 400px;">
     <div class="card-body p-4">
@@ -39,6 +43,21 @@
           <%= f.submit "Log in", class: "btn btn-danger btn-lg" %>
         </div>
 
+<!-- Divider -->
+<div class="d-flex align-items-center my-3">
+  <hr class="flex-grow-1">
+  <span class="mx-2 text-muted small">or</span>
+  <hr class="flex-grow-1">
+</div>
+
+<!-- Google Auth Button -->
+<div class="d-grid">
+  <%= link_to google_auth_path, class: "btn btn-outline-dark btn-lg d-flex align-items-center justify-content-center gap-2" do %>
+    <img src="https://developers.google.com/identity/images/g-logo.png" width="20" height="20">
+    <span>Continue with Google</span>
+  <% end %>
+</div>
+
       <% end %>
 
       <div class="text-center mt-3">
@@ -47,5 +66,7 @@
 
     </div>
   </div>
+
+  
 
 </div>

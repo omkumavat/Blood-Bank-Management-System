@@ -1,0 +1,70 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="d-flex align-items-center mb-4 gap-3">
+        <%= link_to "← Back", hospital_blood_requests_path, class: "btn btn-outline-secondary btn-sm" %>
+        <h2 class="text-danger fw-bold mb-0">Blood Request Details</h2>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+
+          <p class="text-danger fw-bold fs-5 mb-4">
+            <strong>Blood Group:</strong> <%= @blood_request.blood_group %>
+          </p>
+
+          <%# Acceptor Info %>
+          <% acceptor = @blood_request.user || @blood_request.blood_bank %>
+          <% if acceptor %>
+            <h6 class="text-danger fw-bold mb-3">
+              <%= @blood_request.user ? "User" : "Blood Bank" %> Information
+            </h6>
+            <p><strong>Name:</strong>
+              <% if @blood_request.user %>
+                <%= @blood_request.user.first_name %> <%= @blood_request.user.last_name %>
+              <% else %>
+                <%= @blood_request.blood_bank.name %>
+              <% end %>
+            </p>
+            <p><strong>Email:</strong>   <%= acceptor.email %></p>
+            <p><strong>Phone:</strong>   <%= acceptor.phone_number %></p>
+            <p><strong>Address:</strong> <%= acceptor.address %></p>
+            <p><strong>City:</strong>    <%= acceptor.city %></p>
+            <p><strong>State:</strong>   <%= acceptor.state %></p>
+            <p><strong>Country:</strong> <%= acceptor.country %></p>
+            <hr>
+          <% end %>
+
+          <h6 class="text-danger fw-bold mb-3">Hospital Information</h6>
+          <p><strong>Name:</strong>  <%= current_hospital.name %></p>
+          <p><strong>City:</strong>  <%= current_hospital.city %></p>
+          <p><strong>Phone:</strong> <%= current_hospital.phone_number %></p>
+
+          <hr>
+
+          <h6 class="text-danger fw-bold mb-3">Blood Request Information</h6>
+          <p><strong>Requested Date:</strong> <%= @blood_request.created_at.strftime("%B %d, %Y") %></p>
+
+          <% if @blood_request.status == "fulfilled" %>
+            <p><strong>Accepted Date:</strong> <%= @blood_request.updated_at.strftime("%B %d, %Y") %></p>
+          <% else %>
+            <p><strong>Accepted Date:</strong> Not accepted yet</p>
+          <% end %>
+
+          <p><strong>Status:</strong>
+            <% if @blood_request.status == "pending" %>
+              <span class="badge bg-warning text-dark">Pending</span>
+            <% else %>
+              <span class="badge bg-secondary">Fulfilled</span>
+            <% end %>
+          </p>
+
+          <p><strong>Allowed to Users:</strong> <%= @blood_request.allowed_to_users ? "Yes" : "No" %></p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

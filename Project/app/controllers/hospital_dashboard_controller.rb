@@ -164,6 +164,17 @@ def create_blood_request
         )
       )
 
+      users = User.where(
+        city: current_hospital.city,
+        state: current_hospital.state,
+        country: current_hospital.country,
+        blood_group: blood_request_params[:blood_group]
+      )
+
+      users.each do |user|
+        UserMailer.with(user: user, blood_request: BloodRequest.last, hospital: current_hospital).notify_blood_request.deliver_later
+      end 
+
     else
 
       BloodRequest.create!(
