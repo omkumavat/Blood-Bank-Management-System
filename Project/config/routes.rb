@@ -20,6 +20,12 @@ Rails.application.routes.draw do
     end
   end
 
+#   get "/debug-credentials", to: proc { |env|
+#   client_id = Rails.application.credentials.dig(:google, :client_id)
+#   client_secret = Rails.application.credentials.dig(:google, :client_secret)
+#   [200, {"Content-Type" => "text/plain"}, ["client_id: #{client_id}", "client_secret: #{client_secret}"]]
+# }
+
   namespace :blood_bank, path: "blood-bank" do
     get "dashboard", to: "dashboard#index", as: :dashboard
 
