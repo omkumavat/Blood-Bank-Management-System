@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="d-flex align-items-center mb-4 gap-3">
+        <%= link_to "← Back", user_dashboard_path, class: "btn btn-outline-secondary btn-sm" %>
+        <h2 class="text-danger fw-bold mb-0">Blood Request Details</h2>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+
+          <h6 class="text-danger fw-bold mb-3">Blood Request Information</h6>
+          <p><strong>Blood Group:</strong>    <%= @blood_request.blood_group %></p>
+          <p><strong>Units Required:</strong> <%= @blood_request.quantity %></p>
+
+          <hr>
+
+          <h6 class="text-danger fw-bold mb-3">Hospital Information</h6>
+          <p><strong>Name:</strong>    <%= @blood_request.hospital.name %></p>
+          <p><strong>Phone:</strong>   <%= @blood_request.hospital.phone_number %></p>
+          <p><strong>City:</strong>    <%= @blood_request.hospital.city %></p>
+          <p><strong>State:</strong>   <%= @blood_request.hospital.state %></p>
+          <p><strong>Country:</strong> <%= @blood_request.hospital.country %></p>
+          <p><strong>Address:</strong> <%= @blood_request.hospital.address %></p>
+
+          <hr>
+
+          <div class="d-flex gap-2">
+            <%= button_to "Accept Request",
+                accept_user_blood_request_path(@blood_request),
+                method: :patch,
+                class: "btn btn-success" %>
+            <%= link_to "← Back", user_blood_requests_path, class: "btn btn-secondary" %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

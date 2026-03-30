@@ -1,0 +1,5 @@
+<% if @blood_request.status == "fulfilled" %>
+  <%= render "accepted_show" %>
+<% else %>
+  <%= render "pending_show" %>
+<% end %> 

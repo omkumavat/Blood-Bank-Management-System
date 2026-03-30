@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold">Nearby Blood Requests</h2>
+      <p class="text-muted mb-0">Requests near <strong><%= current_user.city %></strong></p>
+    </div>
+  </div>
+
+  <% if @blood_requests.present? %>
+    <div class="row">
+      <% @blood_requests.each do |blood_request| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100 shadow-sm border-0">
+            <div class="card-body d-flex flex-column">
+
+              <h5 class="card-title text-danger fw-bold">
+                <%= blood_request.blood_group %> Blood Required
+              </h5>
+              <p class="mb-1"><strong>Hospital:</strong> <%= blood_request.hospital.name %></p>
+              <p class="mb-1"><strong>City:</strong> <%= blood_request.hospital.city %></p>
+              <p class="mb-3"><strong>Units Required:</strong> <%= blood_request.quantity %></p>
+
+              <div class="mt-auto">
+                <%= link_to "View Request", user_blood_request_path(blood_request), class: "btn btn-danger w-100" %>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="alert alert-warning">No blood requests found near you.</div>
+  <% end %>
+</div>

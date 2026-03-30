@@ -1,0 +1,122 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow">
+  <div class="container">
+
+    <%= link_to "BloodConnect", home_path, class: "navbar-brand fw-bold" %>
+
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <%= link_to "Home", home_path, class: "nav-link" %>
+        </li>
+
+       
+       <% if current_user.present? %>
+         <li class="nav-item">
+          <%= link_to "Donate Blood", user_blood_banks_path, class: "nav-link" %>
+        </li>
+         <li class="nav-item">
+          <%= link_to "Dashboard", user_dashboard_path, class: "nav-link" %>
+        </li>
+       <% end %>
+       
+
+        
+        <% if current_hospital.present? %>
+            <li class="nav-item">
+          <%= link_to "New Blood Request", new_hospital_blood_request_path, class: "nav-link" %>
+        </li>
+         <li class="nav-item">
+          <%= link_to "Dashboard", hospital_dashboard_path, class: "nav-link" %>
+        </li>
+        <% end %>
+        
+        <% if current_blood_bank.present? %>
+        <li class="nav-item">
+        <%= link_to "Donation Requests", blood_bank_donation_appointments_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Dashboard", blood_bank_dashboard_path, class: "nav-link" %>
+        </li>
+        <% end %>
+        <% if current_user.present?  %>
+             <li >
+        <%= button_to "Logout",
+              signout_path,
+              method: :delete,
+              class: "btn btn-danger w-100" %>
+      </li>
+            <% elsif current_hospital.present? %>
+                <%= button_to "Logout",
+              destroy_hospital_session_path,
+              method: :delete,
+              class: "btn btn-danger w-100" %>
+      </li>
+            <% elsif current_blood_bank.present? %>
+                    <%= button_to "Logout",
+                destroy_blood_bank_session_path,
+                method: :delete,
+                class: "btn btn-danger w-100" %>
+            <% elsif current_admin.present? %>
+                <%= button_to "Logout",
+              destroy_admin_session_path,
+              method: :delete,
+              class: "btn btn-danger w-100" %>
+             
+            <% else %>
+            <li class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             role="button"
+             data-bs-toggle="dropdown">
+
+            Login
+          </a>
+                 <ul class="dropdown-menu">
+
+            <li>
+              <%= link_to "User Login", new_user_session_path, class: "dropdown-item" %>
+            </li>
+
+            <li>
+              <%= link_to "Hospital Login", new_hospital_session_path, class: "dropdown-item" %>
+            </li>
+
+            <li>
+              <%= link_to "Blood Bank Login", new_blood_bank_session_path, class: "dropdown-item" %>
+            </li>
+
+            <li>
+              <%= link_to "Admin Login", new_admin_session_path, class: "dropdown-item" %>
+            </li>
+
+          </ul>
+            </li>
+          <% end %>
+          
+          <div class="form-check form-switch ml-5">
+  <%= button_to set_theme_path, method: :post, class: "border-0 bg-transparent p-0" do %>
+    <%= check_box_tag :toggle, "1", @theme == "dark",
+        class: "form-check-input",
+        role: "switch",
+        id: "navToggle",
+        style: "width: 3rem; height: 1.5rem; cursor: pointer;",
+        onclick: "this.form.submit()" %>
+  <% end %>
+</div>
+      </ul>
+
+    </div>
+
+  </div>
+</nav>

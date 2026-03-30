@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="d-flex align-items-center mb-4 gap-3">
+        <%= link_to "← Back", accepted_user_blood_requests_path, class: "btn btn-outline-secondary btn-sm" %>
+        <h2 class="text-success fw-bold mb-0">Accepted Request Details</h2>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+
+          <h6 class="text-danger fw-bold mb-3">Blood Request Information</h6>
+          <p><strong>Blood Group:</strong>          <%= @blood_request.blood_group %></p>
+          <p><strong>Units Required:</strong>       <%= @blood_request.quantity %></p>
+          <p><strong>Required By Hospital:</strong> <%= @blood_request.hospital.name %></p>
+          <p><strong>Requested In:</strong>         <%= @blood_request.created_at.strftime("%B %d, %Y") %></p>
+          <p><strong>Accepted In:</strong>          <%= @blood_request.updated_at.strftime("%B %d, %Y") %></p>
+
+          <hr>
+
+          <h6 class="text-danger fw-bold mb-3">Hospital Information</h6>
+          <p><strong>Name:</strong>    <%= @blood_request.hospital.name %></p>
+          <p><strong>Phone:</strong>   <%= @blood_request.hospital.phone_number %></p>
+          <p><strong>City:</strong>    <%= @blood_request.hospital.city %></p>
+          <p><strong>Address:</strong> <%= @blood_request.hospital.address %></p>
+
+          <hr>
+
+          <h6 class="text-danger fw-bold mb-3">Donor Information</h6>
+          <p><strong>Name:</strong>        <%= current_user.first_name %> <%= current_user.last_name %></p>
+          <p><strong>Email:</strong>       <%= current_user.email %></p>
+          <p><strong>Phone:</strong>       <%= current_user.phone_number %></p>
+          <p><strong>Blood Group:</strong> <%= current_user.blood_group %></p>
+          <p><strong>City:</strong>        <%= current_user.city %></p>
+          <p><strong>Address:</strong>     <%= current_user.address %></p>
+
+          <hr>
+
+          <%= link_to "← Back", accepted_user_blood_requests_path, class: "btn btn-secondary" %>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
